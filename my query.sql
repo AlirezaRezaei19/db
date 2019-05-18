@@ -13,3 +13,13 @@
 --select count(*) , DEPARTMENT  from worker group by department having count(*) < 5;
 --select first_name ,department from worker where salary in (select max(salary) from worker where department in (select department from worker group by department ))
 --select department , sum(salary) from worker group by department
+CREATE PROCEDURE MyInsert( _WORKER_ID integer,
+  _FIRST_NAME CHAR(25),
+  _LAST_NAME CHAR(25),
+  _SALARY INT,
+  _JOINING_DATE TIMESTAMP,
+  _DEPARTMENT CHAR(25))
+LANGUAGE SQL
+AS $BODY$
+   INSERT INTO worker (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES(_WORKER_ID, _FIRST_NAME, _LAST_NAME, _SALARY, _JOINING_DATE, _DEPARTMENT);   
+$BODY$;
